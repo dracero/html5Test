@@ -4,12 +4,11 @@
   "scripts": {
     "start": "node app.js"
   },
-  "dependencies": {
-    "express": "4.17.1"
+   "dependencies": {
+    "express": "^4.17.1",
+    "npm": "^7.5.0"
   },
-  "devDependencies": {},
   "engines": {
-    "node": "8.x",
-    "npm": "7.5.0"
+    "node": "8.x"
   }
 }
