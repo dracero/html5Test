@@ -1,32 +1,24 @@
-var path = require('path');
-var express = require("express");
-var app = express();
+// server.js
+// where your node app starts
 
-//use logger
-app.use(express.logger());
+// init project
+const express = require("express");
+const app = express();
 
-//compress with gzip/deflate
-app.use(express.compress());
+// we've started you off with Express,
+// but feel free to use whatever libs or frameworks you'd like through `package.json`.
 
-//serve up static pages with max-age headers of 1 day
-app.use(express.static(path.join(__dirname, '/')));
+// http://expressjs.com/en/starter/static-files.html
+app.use(express.static("/"));
 
-//body parsing middleware (for json, urlencoded, and multipart responses)
-app.use(express.bodyParser());
-
-//handle any errors
-app.use(function(err, req, res, next){
-  console.error(err.stack);
-  res.send(500, 'Something broke!');
+// http://expressjs.com/en/starter/basic-routing.html
+app.get("/", function(request, response) {
+  response.sendFile(__dirname + "/index.html");//esto si queremos servir un archivo desde el mismo server
+  //response.redirect("https://botmess19.herokuapp.com/");//esto para servir un archivo cualquiera 
+  //hay que guardar el código en GitHub y conectarlo en Heroku, finalmente lo que ponemos en el redirect es Heroku
 });
 
-// Render the app
-app.get('/', function(req, res) {
-  res.sendfile(path.join(__dirname, '/index.html'));
-});
-
-//start server
-var port = process.env.PORT || 5000;
-app.listen(port, function() {
-  console.log("Listening on " + port);
+// listen for requests :)
+const listener = app.listen(process.env.PORT, function() {
+  console.log("Your app is listening on port " + listener.address().port);
 });
