@@ -3,7 +3,10 @@
 
 // init project
 const express = require("express");
+var cors = require('cors');
+
 const app = express();
+app.use(cors());
 
 // we've started you off with Express,
 // but feel free to use whatever libs or frameworks you'd like through `package.json`.
